@@ -1,0 +1,22 @@
+<h1> Nuevo TODO </h1>
+<% if @todo.errors.any? %>
+<h2> Ha habido un error </h2>
+<ul>
+<% @todo.errors.full_messages.each do |e| %>
+   <li><%= e %> </li>
+    <% end %>
+</ul>
+<% end %>
+<%= form_for @todo do |f| %>
+    <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.label :description %><br>
+        <%= f.text_field :description %>
+    </p>
+    <p>
+    <%= f.submit %>
+</p>
+  <% end %>
