@@ -5,3 +5,5 @@ name: <%= @todo.name  %>
 <p>
 description: <%= @todo.description  %>
 </p>
+<%= link_to "Edit",edit_todo_path(@todo) %>
+<%= link_to "Index",todos_path %>

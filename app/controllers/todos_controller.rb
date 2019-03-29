@@ -26,9 +26,10 @@ class TodosController < ApplicationController
     end
 
     def update
+      @todo = Todo.find(params[:id])
       if @todo.update(todo_params)
         flash[:success] = 'Se ha guardado el todo'
-        redirect_to todos_path
+        redirect_to todo_path(@todo)
       else
         flash[:danger] = 'No se ha podido modificar el todo'
         render :edit
