@@ -37,12 +37,13 @@ class TodosController < ApplicationController
     end
 
     def destroy
+      @todo = Todo.find(params[:id])
       if @todo.destroy
         flash[:success] = 'Todo eliminado'
       else
         flash[:danger] = 'No se ha podido eliminar'
       end
-      redirect_back(fallback_location: todos_path)
+      redirect_to todos_path
     end
 
     private
