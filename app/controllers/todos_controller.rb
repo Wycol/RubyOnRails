@@ -1,4 +1,6 @@
 class TodosController < ApplicationController
+    before_action :set_todo, only: [:edit, :update, :destroy, :show]
+  
     def index
       @todos = Todo.all
     end
@@ -18,15 +20,12 @@ class TodosController < ApplicationController
     end
 
     def show
-        @todo = Todo.find(params[:id])
     end
 
     def edit
-        @todo = Todo.find(params[:id])
     end
 
     def update
-      @todo = Todo.find(params[:id])
       if @todo.update(todo_params)
         flash[:success] = 'Se ha guardado el todo'
         redirect_to todo_path(@todo)
@@ -37,13 +36,16 @@ class TodosController < ApplicationController
     end
 
     def destroy
-      @todo = Todo.find(params[:id])
       if @todo.destroy
         flash[:success] = 'Todo eliminado'
       else
         flash[:danger] = 'No se ha podido eliminar'
       end
       redirect_to todos_path
+    end
+
+    def set_todo
+      @todo = Todo.find(params[:id])
     end
 
     private
